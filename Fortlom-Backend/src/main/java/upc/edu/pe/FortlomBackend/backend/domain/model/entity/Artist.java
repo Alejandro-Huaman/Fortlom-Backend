@@ -22,12 +22,10 @@ import javax.validation.constraints.Size;
 public class Artist extends  User{
 
     @NotNull
-    @NotBlank
     @Column(unique = true)
     private Long tags;
 
     @NotNull
-    @NotBlank
     @Column(unique = true)
     private Long followers;
 

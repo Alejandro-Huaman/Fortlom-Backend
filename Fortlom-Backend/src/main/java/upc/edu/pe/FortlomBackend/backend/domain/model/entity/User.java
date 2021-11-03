@@ -50,7 +50,6 @@ public class User  {
     private String Password;
 
     @NotNull
-    @NotBlank
     @Column(unique = true)
     private Date registration;
 

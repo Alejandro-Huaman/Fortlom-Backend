@@ -8,9 +8,8 @@ public class FortlomBackendApplication {
 
 	public static void main(String[] args) {
 
-		SpringApplication app =new SpringApplication(FortlomBackendApplication.class);
-		app.setDefaultProperties(Collections.singletonMap("server.port", "8082"));
-		app.run(args);
+		SpringApplication.run (FortlomBackendApplication.class,args);
+
 	}
 
 }

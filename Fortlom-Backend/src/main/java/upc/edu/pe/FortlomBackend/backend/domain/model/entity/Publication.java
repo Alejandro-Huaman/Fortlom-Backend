@@ -38,12 +38,10 @@ public class Publication {
     private String PublicationDescription;
 
     @NotNull
-    @NotBlank
     @Column(unique = true)
     private Long likes;
 
     @NotNull
-    @NotBlank
     @Column(unique = true)
     private Date date;
 
