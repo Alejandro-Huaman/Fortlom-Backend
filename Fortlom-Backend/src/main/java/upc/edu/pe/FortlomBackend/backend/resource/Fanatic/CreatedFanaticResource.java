@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class CreatedFanaticResource {
-
+    private Long id;
     @NotNull
     @Size(max = 30)
     private String alias;

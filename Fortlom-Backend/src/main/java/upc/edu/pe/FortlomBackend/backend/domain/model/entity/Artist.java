@@ -18,8 +18,11 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @With
 @Table(name = "Artist")
-@PrimaryKeyJoinColumn(referencedColumnName ="id" )
-public class Artist extends  User{
+
+public class Artist {
+
+    @Id
+    private Long Id;
 
     @NotNull
     @Column(unique = true)

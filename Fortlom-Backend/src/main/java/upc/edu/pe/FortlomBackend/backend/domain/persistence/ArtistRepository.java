@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ArtistRepository extends JpaRepository<Artist,Long> {
 
-Optional<User>findbyId(Long userid);
+
 
 
 

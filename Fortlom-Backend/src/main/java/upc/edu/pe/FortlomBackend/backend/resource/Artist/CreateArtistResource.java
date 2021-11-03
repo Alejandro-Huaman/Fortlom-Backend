@@ -10,6 +10,7 @@ import java.util.Date;
 @Setter
 public class CreateArtistResource {
 
+    private Long Id;
     @NotNull
     private Long followers;
 

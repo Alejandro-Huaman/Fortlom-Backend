@@ -9,7 +9,7 @@ import java.util.Date;
 public class ArtistResource {
 
 
-
+    private Long id;
     private Long followers;
     private Long tags;
 
