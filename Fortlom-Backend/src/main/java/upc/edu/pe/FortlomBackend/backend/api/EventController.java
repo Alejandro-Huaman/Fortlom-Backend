@@ -41,7 +41,6 @@ public class EventController {
     public EventResource createEvent(@PathVariable Long artistId,@RequestBody CreateEventResource request) {
         Event event = mapping.map(request, Event.class);
         return mapping.map(eventService.createEvent(artistId, event), EventResource.class);
-        //return mapper.toResource(eventService.createEvent(mapper.toModel(request)));
     }
     @PutMapping("/event/{eventId}")
     public EventResource updateEvent(@PathVariable Long eventId, @RequestBody UpdateEventResource request) {

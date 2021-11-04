@@ -55,11 +55,6 @@ public class EventServiceImpl implements EventService {
                     return eventRepository.save(request);
                 })
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY2, artistId));
-        /*Set<ConstraintViolation<Event>> violations = validator.validate(request);
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
-
-        return eventRepository.save(request);*/
     }
     @Override
     public Event updateEvent(Long eventId, Event request) {
