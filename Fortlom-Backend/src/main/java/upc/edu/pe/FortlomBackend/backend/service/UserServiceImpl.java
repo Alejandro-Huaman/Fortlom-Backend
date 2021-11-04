@@ -72,8 +72,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public ResponseEntity<?> delete(Long userid) {
-        return userRepository.findById(userid).map(post -> {
-            userRepository.delete(post);
+        return userRepository.findById(userid).map(user -> {
+            userRepository.delete(user);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, userid));
     }

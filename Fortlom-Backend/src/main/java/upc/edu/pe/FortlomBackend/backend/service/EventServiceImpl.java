@@ -74,8 +74,8 @@ public class EventServiceImpl implements EventService {
     }
     @Override
     public ResponseEntity<?> deleteEvent(Long eventId) {
-        return eventRepository.findById(eventId).map(post -> {
-            eventRepository.delete(post);
+        return eventRepository.findById(eventId).map(event -> {
+            eventRepository.delete(event);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, eventId));
     }

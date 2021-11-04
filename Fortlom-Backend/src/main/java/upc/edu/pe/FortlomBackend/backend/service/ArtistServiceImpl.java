@@ -73,8 +73,8 @@ public class ArtistServiceImpl implements ArtistService {
     }
     @Override
     public ResponseEntity<?> delete(Long artistId) {
-        return artistRepository.findById(artistId).map(post -> {
-            artistRepository.delete(post);
+        return artistRepository.findById(artistId).map(artist -> {
+            artistRepository.delete(artist);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, artistId));
     }
