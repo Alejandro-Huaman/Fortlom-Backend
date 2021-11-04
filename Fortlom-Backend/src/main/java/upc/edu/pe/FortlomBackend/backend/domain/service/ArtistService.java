@@ -8,10 +8,10 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 public interface ArtistService {
-    List<Artist> getAllArtists();
-    Page<Artist> getAllArtists(Pageable pageable);
-    Artist getArtistById(Long artistId);
-    Artist createArtist(Artist artist);
-    Artist updateArtist(Long artistId, Artist request);
-    ResponseEntity<?> deleteArtist(Long artistId);
+    List<Artist> getAll();
+    Page<Artist> getAll(Pageable pageable);
+    Artist getById(Long artistId);
+    Artist create(Artist artist);
+    Artist update(Long artistId, Artist request);
+    ResponseEntity<?> delete(Long artistId);
 }

@@ -33,7 +33,6 @@ public class Event extends AuditModel {
     private String EventDescription;
 
     @NotNull
-    @NotBlank
     private Long Likes;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)

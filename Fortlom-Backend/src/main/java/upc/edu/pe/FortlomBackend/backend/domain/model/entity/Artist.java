@@ -19,20 +19,16 @@ import java.util.List;
 @AllArgsConstructor
 @With
 @Table(name = "Artist")
-@PrimaryKeyJoinColumn(referencedColumnName ="id" )
-public class Artist extends  User{
+public class Artist{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
-    @NotBlank
-    @Column(unique = true)
     private Long tags;
 
     @NotNull
-    @NotBlank
-    @Column(unique = true)
     private Long followers;
-
-    @OneToMany
-    private List<Event> events;
 
 }
