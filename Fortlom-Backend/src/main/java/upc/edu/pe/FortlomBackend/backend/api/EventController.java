@@ -10,9 +10,11 @@ import upc.edu.pe.FortlomBackend.backend.mapping.EventMapper;
 import upc.edu.pe.FortlomBackend.backend.resource.Event.EventResource;
 import upc.edu.pe.FortlomBackend.backend.resource.Event.UpdateEventResource;
 import upc.edu.pe.FortlomBackend.backend.resource.Event.CreateEventResource;
+import org.modelmapper.ModelMapper;
+import upc.edu.pe.FortlomBackend.backend.domain.model.entity.Event;
 
 @RestController
-@RequestMapping("/api/v1/events")
+@RequestMapping("/api/v1")
 public class EventController {
     @Autowired
     private EventService eventService;
@@ -20,28 +22,32 @@ public class EventController {
     @Autowired
     private EventMapper mapper;
 
-    @GetMapping
+    @Autowired
+    private ModelMapper mapping;
+
+    @GetMapping("/events")
     public Page<EventResource> getAllEvents(Pageable pageable) {
         return mapper.modelListToPage(eventService.getAllEvents(), pageable);
     }
-    @GetMapping("{eventId}")
+    @GetMapping("/event/{eventId}")
     public EventResource getEventById(@PathVariable Long eventId) {
         return mapper.toResource(eventService.getEventById(eventId));
     }
-    @GetMapping("{artistId}")
+    @GetMapping("/artist/{artistId}/events")
     public Page<EventResource> getAllEventsByArtistId(@PathVariable Long artistId,Pageable pageable) {
         return mapper.modelListToPage(eventService.getEventsByArtistId(artistId), pageable);
     }
-    @PostMapping
-    public EventResource createEvent(@RequestBody CreateEventResource request) {
-
-        return mapper.toResource(eventService.createEvent(mapper.toModel(request)));
+    @PostMapping("/artist/{artistId}/events")
+    public EventResource createEvent(@PathVariable Long artistId,@RequestBody CreateEventResource request) {
+        Event event = mapping.map(request, Event.class);
+        return mapping.map(eventService.createEvent(artistId, event), EventResource.class);
+        //return mapper.toResource(eventService.createEvent(mapper.toModel(request)));
     }
-    @PutMapping("{eventId}")
+    @PutMapping("/event/{eventId}")
     public EventResource updateEvent(@PathVariable Long eventId, @RequestBody UpdateEventResource request) {
         return mapper.toResource(eventService.updateEvent(eventId, mapper.toModel(request)));
     }
-    @DeleteMapping("{eventId}")
+    @DeleteMapping("/event/{eventId}")
     public ResponseEntity<?> deleteEvent(@PathVariable Long eventId) {
         return eventService.deleteEvent(eventId);
     }

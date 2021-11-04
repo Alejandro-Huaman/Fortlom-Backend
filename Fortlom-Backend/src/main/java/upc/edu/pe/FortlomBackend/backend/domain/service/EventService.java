@@ -11,7 +11,7 @@ public interface EventService {
     List<Event> getAllEvents();
     Page<Event> getAllEvents(Pageable pageable);
     Event getEventById(Long eventId);
-    Event createEvent(Event event);
+    Event createEvent(Long artistId,Event event);
     Event updateEvent(Long eventId, Event request);
     List<Event> getEventsByArtistId(Long artistId);
     ResponseEntity<?> deleteEvent(Long eventId);
