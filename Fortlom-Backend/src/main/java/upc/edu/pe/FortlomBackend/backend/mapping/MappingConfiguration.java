@@ -17,6 +17,11 @@ public class MappingConfiguration {
     }
 
     @Bean
+    public EventMapper eventMapper() {
+        return new EventMapper();
+    }
+
+    @Bean
     public ArtistMapper artistMapper() {
         return new ArtistMapper();
     }
