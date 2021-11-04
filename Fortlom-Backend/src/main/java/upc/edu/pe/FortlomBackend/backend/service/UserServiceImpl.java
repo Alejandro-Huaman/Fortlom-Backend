@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
                                 .withLastName(request.getLastName())
                                 .withEmail(request.getEmail()))
                                 .withPassword(request.getPassword())
-                                .withRegistration(request.getRegistration())
+
         ).orElseThrow(() -> new ResourceNotFoundException(ENTITY, userId));
     }
 

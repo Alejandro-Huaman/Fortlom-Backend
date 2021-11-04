@@ -33,5 +33,5 @@ public class UpdateUserResource {
 
 
 
-    private Date registration;
+
 }

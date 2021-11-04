@@ -30,8 +30,7 @@ public class CreateUserResource {
     private String Password;
 
 
-    @NotNull
-    private Date registration;
+
 
 
 

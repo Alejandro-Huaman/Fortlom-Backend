@@ -25,11 +25,11 @@ public class Artist {
     private Long Id;
 
     @NotNull
-    @Column(unique = true)
+    @Column()
     private Long tags;
 
     @NotNull
-    @Column(unique = true)
+    @Column()
     private Long followers;
 
 }

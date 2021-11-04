@@ -12,6 +12,6 @@ public class UserResource {
     private String LastName;
     private String Email;
     private String password;
-    private Date registration;
+
 
 }

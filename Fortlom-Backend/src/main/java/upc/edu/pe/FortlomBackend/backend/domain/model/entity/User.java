@@ -19,7 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "User")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,12 +45,8 @@ public class User  {
     @NotNull
     @NotBlank
     @Size(max = 30)
-    @Column(unique = true)
+    @Column()
     private String Password;
-
-    @NotNull
-    @Column(unique = true)
-    private Date registration;
 
 
     @OneToMany
