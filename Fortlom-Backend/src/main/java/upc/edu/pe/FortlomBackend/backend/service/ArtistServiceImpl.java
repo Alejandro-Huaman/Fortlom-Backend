@@ -1,7 +1,5 @@
 package upc.edu.pe.FortlomBackend.backend.service;
 
-
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +14,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 import java.util.List;
 import java.util.Set;
-
 
 
 @Service
@@ -76,8 +73,8 @@ public class ArtistServiceImpl implements ArtistService {
     }
     @Override
     public ResponseEntity<?> delete(Long artistId) {
-        return artistRepository.findById(artistId).map(post -> {
-            artistRepository.delete(post);
+        return artistRepository.findById(artistId).map(artist -> {
+            artistRepository.delete(artist);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, artistId));
     }

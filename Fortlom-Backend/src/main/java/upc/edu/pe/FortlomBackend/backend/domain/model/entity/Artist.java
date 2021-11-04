@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,11 +19,10 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @With
 @Table(name = "Artist")
-
-public class Artist {
+public class Artist{
 
     @Id
-    private Long Id;
+    private Long id;
 
     @NotNull
     @Column()
@@ -31,5 +31,9 @@ public class Artist {
     @NotNull
     @Column()
     private Long followers;
+
+    @OneToMany(targetEntity = Event.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "artistid",referencedColumnName = "id")
+    private List<Event> events;
 
 }
