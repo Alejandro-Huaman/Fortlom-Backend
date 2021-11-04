@@ -71,14 +71,6 @@ public class EventServiceImpl implements EventService {
     public List<Event> getEventsByArtistId(Long artistId) {
 
         return eventRepository.findByArtistId(artistId);
-        /*List<Event> list = eventRepository.findByArtistId(artistId);
-        if(list != null){
-            return eventRepository.findByArtistId(artistId);
-        }else{
-            new ResourceNotFoundException(ENTITY2, artistId);
-        }*/
-
-        //.orElseThrow(() -> new ResourceNotFoundException(ENTITY, artistId));
     }
     @Override
     public ResponseEntity<?> deleteEvent(Long eventId) {

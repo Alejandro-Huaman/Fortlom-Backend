@@ -22,13 +22,18 @@ import java.util.List;
 public class Artist{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
+    @Column()
     private Long tags;
 
     @NotNull
+    @Column()
     private Long followers;
+
+    @OneToMany(targetEntity = Event.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "artistid",referencedColumnName = "id")
+    private List<Event> events;
 
 }

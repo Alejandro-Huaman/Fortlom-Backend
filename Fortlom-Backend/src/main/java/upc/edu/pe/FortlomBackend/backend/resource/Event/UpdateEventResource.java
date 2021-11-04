@@ -24,4 +24,5 @@ public class UpdateEventResource {
 
     @NotNull
     private Long Likes;
+
 }

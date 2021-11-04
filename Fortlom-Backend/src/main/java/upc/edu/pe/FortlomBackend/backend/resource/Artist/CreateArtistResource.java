@@ -9,6 +9,8 @@ import lombok.Setter;
 @Setter
 public class CreateArtistResource {
 
+    private Long Id;
+
     @NotNull
     private Long followers;
 

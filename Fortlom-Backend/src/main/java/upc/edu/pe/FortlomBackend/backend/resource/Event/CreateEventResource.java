@@ -5,6 +5,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import upc.edu.pe.FortlomBackend.backend.resource.Artist.ArtistResource;
 
 @Getter
 @Setter
@@ -21,5 +22,7 @@ public class CreateEventResource {
 
     @NotNull
     private Long Likes;
+
+    private ArtistResource artist;
 
 }

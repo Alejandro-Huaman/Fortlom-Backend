@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @AllArgsConstructor
 @Entity
 @Table(name = "Event")
-public class Event extends AuditModel {
+public class Event{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,8 +35,8 @@ public class Event extends AuditModel {
     @NotNull
     private Long Likes;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "artist_id", nullable = false)
+    @ManyToOne(targetEntity = Artist.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "artistid")
     private Artist artist;
 
 }
