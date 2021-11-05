@@ -1,5 +1,4 @@
 package upc.edu.pe.FortlomBackend.backend.domain.model.entity;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -46,7 +45,15 @@ public class User  {
     @NotNull
     @NotBlank
     @Size(max = 30)
-    @Column(unique = true)
+    @Column()
     private String Password;
+
+
+    @OneToMany
+    private List<Publication> publications;
+
+    @OneToMany(targetEntity = Forum.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid",referencedColumnName = "id")
+    private List<Forum> forums;
 
 }

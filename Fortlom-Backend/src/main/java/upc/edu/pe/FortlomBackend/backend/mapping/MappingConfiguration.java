@@ -12,13 +12,18 @@ public class MappingConfiguration {
     }
 
     @Bean
-    public EventMapper eventMapper() {
-        return new EventMapper();
+    public FanaticMapper fanaticMapper() {
+        return new FanaticMapper();
     }
 
     @Bean
     public ArtistMapper artistMapper() {
         return new ArtistMapper();
+    }
+
+    @Bean
+    public ForumMapper forumMapper() {
+        return new ForumMapper();
     }
 
 

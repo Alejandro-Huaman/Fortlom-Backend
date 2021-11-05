@@ -32,8 +32,4 @@ public class Artist{
     @Column()
     private Long followers;
 
-    @OneToMany(targetEntity = Event.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "artistid",referencedColumnName = "id")
-    private List<Event> events;
-
 }

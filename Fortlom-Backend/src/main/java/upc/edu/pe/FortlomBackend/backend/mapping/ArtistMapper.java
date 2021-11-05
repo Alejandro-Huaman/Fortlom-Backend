@@ -1,5 +1,7 @@
 package upc.edu.pe.FortlomBackend.backend.mapping;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -8,15 +10,17 @@ import upc.edu.pe.FortlomBackend.backend.domain.model.entity.Artist;
 
 import upc.edu.pe.FortlomBackend.backend.resource.Artist.ArtistResource;
 import upc.edu.pe.FortlomBackend.backend.resource.Artist.CreateArtistResource;
-import upc.edu.pe.FortlomBackend.backend.resource.Artist.UpdateArtistResource;
+import upc.edu.pe.FortlomBackend.backend.resource.Artist.UpdateArtstResource;
+import upc.edu.pe.FortlomBackend.backend.resource.Fanatic.CreatedFanaticResource;
 import upc.edu.pe.FortlomBackend.shared.mapping.EnhancedModelMapper;
 
 import java.io.Serializable;
 import java.util.List;
+public class ArtistMapper implements  Serializable{
 
-public class ArtistMapper implements Serializable {
     @Autowired
     EnhancedModelMapper mapper;
+
 
     public ArtistResource toResource(Artist model) {
         return mapper.map(model, ArtistResource.class);
@@ -29,7 +33,10 @@ public class ArtistMapper implements Serializable {
         return mapper.map(resource, Artist.class);
     }
 
-    public Artist toModel(UpdateArtistResource resource) {
+    public Artist toModel(UpdateArtstResource resource) {
         return mapper.map(resource, Artist.class);
     }
+
+
+
 }

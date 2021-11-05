@@ -22,7 +22,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "Forum")
-public class Forum extends  AuditModel{
+public class Forum{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,9 +42,8 @@ public class Forum extends  AuditModel{
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "userid")
     private User user;
-
 
 }
