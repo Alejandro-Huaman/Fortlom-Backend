@@ -1,8 +1,6 @@
 package upc.edu.pe.FortlomBackend.backend.service;
 
 import upc.edu.pe.FortlomBackend.backend.domain.model.entity.Event;
-import upc.edu.pe.FortlomBackend.backend.domain.model.entity.Artist;
-import upc.edu.pe.FortlomBackend.backend.domain.persistence.ArtistRepository;
 import upc.edu.pe.FortlomBackend.backend.domain.persistence.EventRepository;
 import upc.edu.pe.FortlomBackend.backend.domain.service.EventService;
 
@@ -22,16 +20,14 @@ import java.util.Set;
 public class EventServiceImpl implements EventService {
 
     private static final String ENTITY = "Event";
-    private static final String ENTITY2 = "Artist";
+    //private static final String ENTITY2 = "Artist";
     private final EventRepository eventRepository;
-    private final ArtistRepository artistRepository;
 
     private final Validator validator;
 
-    public EventServiceImpl(EventRepository eventRepository,ArtistRepository artistRepository, Validator validator){
+    public EventServiceImpl(EventRepository eventRepository, Validator validator){
         this.eventRepository=eventRepository;
         this.validator=validator;
-        this.artistRepository = artistRepository;
     }
 
     public List<Event> getAllEvents() {
@@ -47,14 +43,12 @@ public class EventServiceImpl implements EventService {
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, eventId));
     }
     @Override
-    public Event createEvent(Long artistId,Event request) {
+    public Event createEvent(Event request) {
+        Set<ConstraintViolation<Event>> violations = validator.validate(request);
+        if (!violations.isEmpty())
+            throw new ResourceValidationException(ENTITY, violations);
 
-        return artistRepository.findById(artistId)
-                .map(artists -> {
-                    request.setArtist(artists);
-                    return eventRepository.save(request);
-                })
-                .orElseThrow(() -> new ResourceNotFoundException(ENTITY2, artistId));
+        return eventRepository.save(request);
     }
     @Override
     public Event updateEvent(Long eventId, Event request) {

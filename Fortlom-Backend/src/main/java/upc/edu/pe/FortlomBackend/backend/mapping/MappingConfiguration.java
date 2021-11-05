@@ -12,11 +12,6 @@ public class MappingConfiguration {
     }
 
     @Bean
-    public FanaticMapper fanaticMapper() {
-        return new FanaticMapper();
-    }
-
-    @Bean
     public EventMapper eventMapper() {
         return new EventMapper();
     }

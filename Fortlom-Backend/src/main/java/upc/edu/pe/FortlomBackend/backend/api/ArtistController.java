@@ -1,6 +1,5 @@
 package upc.edu.pe.FortlomBackend.backend.api;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import upc.edu.pe.FortlomBackend.backend.domain.service.ArtistService;
 import upc.edu.pe.FortlomBackend.backend.mapping.ArtistMapper;
 import upc.edu.pe.FortlomBackend.backend.resource.Artist.ArtistResource;
-import upc.edu.pe.FortlomBackend.backend.resource.Artist.UpdateArtstResource;
+import upc.edu.pe.FortlomBackend.backend.resource.Artist.UpdateArtistResource;
 import upc.edu.pe.FortlomBackend.backend.resource.Artist.CreateArtistResource;
 
 
@@ -24,20 +23,20 @@ public class ArtistController {
 
 
     @GetMapping
-    public Page<ArtistResource> getAllFanatics(Pageable pageable) {
+    public Page<ArtistResource> getAllArtists(Pageable pageable) {
         return mapper.modelListToPage(artistService.getAll(), pageable);
     }
     @GetMapping("{artistId}")
-    public ArtistResource getUserById(@PathVariable("artistId") Long artistId) {
+    public ArtistResource getArtistById(@PathVariable("artistId") Long artistId) {
         return mapper.toResource(artistService.getById(artistId));
     }
     @PostMapping
-    public ArtistResource createUser(@RequestBody CreateArtistResource request) {
+    public ArtistResource createArtist(@RequestBody CreateArtistResource request) {
 
         return mapper.toResource(artistService.create(mapper.toModel(request)));
     }
     @PutMapping("{artistId}")
-    public ArtistResource updateUser(@PathVariable Long artistId, @RequestBody UpdateArtstResource request) {
+    public ArtistResource updateArtist(@PathVariable Long artistId, @RequestBody UpdateArtistResource request) {
         return mapper.toResource(artistService.update(artistId, mapper.toModel(request)));
     }
     @DeleteMapping("{artistId}")

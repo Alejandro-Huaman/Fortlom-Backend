@@ -23,4 +23,6 @@ public class CreateEventResource {
     @NotNull
     private Long Likes;
 
+    private ArtistResource artist;
+
 }

@@ -1,4 +1,5 @@
 package upc.edu.pe.FortlomBackend.backend.resource;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,5 @@ public class UserResource {
     private String LastName;
     private String Email;
     private String password;
-
 
 }

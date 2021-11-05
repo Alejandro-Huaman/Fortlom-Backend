@@ -1,4 +1,5 @@
 package upc.edu.pe.FortlomBackend.backend.resource;
+
 import javax.persistence.Column;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
@@ -28,9 +29,6 @@ public class CreateUserResource {
     @NotNull
     @Size(max = 30)
     private String Password;
-
-
-
 
 
 

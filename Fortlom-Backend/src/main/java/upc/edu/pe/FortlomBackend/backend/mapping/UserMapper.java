@@ -1,4 +1,5 @@
 package upc.edu.pe.FortlomBackend.backend.mapping;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -12,7 +13,7 @@ import upc.edu.pe.FortlomBackend.shared.mapping.EnhancedModelMapper;
 import java.io.Serializable;
 import java.util.List;
 
-public class UserMapper implements  Serializable{
+public class UserMapper implements Serializable{
 
     @Autowired
     EnhancedModelMapper mapper;
@@ -31,8 +32,4 @@ public class UserMapper implements  Serializable{
     public User toModel(UpdateUserResource resource) {
         return mapper.map(resource, User.class);
     }
-
-
-
-
 }

@@ -1,4 +1,5 @@
 package upc.edu.pe.FortlomBackend.backend.domain.model.entity;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -45,14 +46,7 @@ public class User  {
     @NotNull
     @NotBlank
     @Size(max = 30)
-    @Column()
+    @Column(unique = true)
     private String Password;
-
-
-    @OneToMany
-    private List<Forum> forums;
-
-    @OneToMany
-    private List<Publication> publications;
 
 }
