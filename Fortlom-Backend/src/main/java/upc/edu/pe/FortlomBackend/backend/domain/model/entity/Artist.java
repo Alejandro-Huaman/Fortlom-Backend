@@ -35,5 +35,8 @@ public class Artist{
     @OneToMany(targetEntity = Event.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "artistid",referencedColumnName = "id")
     private List<Event> events;
-
+    
+    @OneToMany(targetEntity = Publication.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "artistid",referencedColumnName = "id")
+    private List<Publication> publications;
 }
