@@ -1,11 +1,16 @@
 package upc.edu.pe.FortlomBackend.backend.domain.persistence;
 
-import upc.edu.pe.FortlomBackend.backend.domain.model.entity.User;
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import upc.edu.pe.FortlomBackend.backend.domain.model.entity.User;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.List;
+import java.util.Optional;
+public interface  UserRepository extends JpaRepository<User,Long> {
+
+
+
+
 
 }

@@ -1,11 +1,19 @@
 package upc.edu.pe.FortlomBackend.backend.domain.persistence;
 
-import upc.edu.pe.FortlomBackend.backend.domain.model.entity.Artist;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import upc.edu.pe.FortlomBackend.backend.domain.model.entity.Artist;
+import upc.edu.pe.FortlomBackend.backend.domain.model.entity.User;
 
-@Repository
-public interface ArtistRepository extends JpaRepository<Artist, Long> {
+import java.util.Optional;
+
+
+public interface ArtistRepository extends JpaRepository<Artist,Long> {
+
+
+
+
+
+
 
 }

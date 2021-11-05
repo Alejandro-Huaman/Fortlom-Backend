@@ -63,17 +63,18 @@ public class UserServiceImpl implements UserService {
 
         return userRepository.findById(userId).map(user ->
                 userRepository.save(
-                                user.withName(request.getName())
-                                        .withLastName(request.getLastName())
-                                        .withEmail(request.getEmail()))
-                        .withPassword(request.getPassword())
+                        user.withName(request.getName())
+                                .withLastName(request.getLastName())
+                                .withEmail(request.getEmail()))
+                                .withPassword(request.getPassword())
+
         ).orElseThrow(() -> new ResourceNotFoundException(ENTITY, userId));
     }
 
     @Override
     public ResponseEntity<?> delete(Long userid) {
-        return userRepository.findById(userid).map(user -> {
-            userRepository.delete(user);
+        return userRepository.findById(userid).map(post -> {
+            userRepository.delete(post);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, userid));
     }
