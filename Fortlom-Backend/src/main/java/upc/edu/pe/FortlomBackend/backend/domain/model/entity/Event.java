@@ -35,7 +35,7 @@ public class Event{
     @NotNull
     private Long Likes;
 
-    @ManyToOne(targetEntity = Artist.class,cascade = CascadeType.ALL)
+    @ManyToOne(targetEntity = Artist.class)
     @JoinColumn(name = "artistid")
     private Artist artist;
 
