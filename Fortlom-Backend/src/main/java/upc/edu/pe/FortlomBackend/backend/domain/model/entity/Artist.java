@@ -34,7 +34,7 @@ public class Artist {
     private Long followers;
 
     @OneToMany(targetEntity = Publication.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "publicationid",referencedColumnName = "id")
+    @JoinColumn(name = "artistid",referencedColumnName = "id")
     private List<Publication> publications;
 
 }

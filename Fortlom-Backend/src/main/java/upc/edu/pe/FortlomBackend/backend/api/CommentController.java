@@ -35,7 +35,7 @@ public class CommentController {
         return mapper.toResource(commentService.getById(commentId));
     }
 
-    @PostMapping("/user/{userId}/publication/{publicationId}/comments")
+    @PostMapping("/users/{userId}/publications/{publicationId}/comments")
     public CommentResource createComment(@PathVariable Long userId, @PathVariable Long publicationId, @RequestBody CreateCommentResource request) {
         Comment comment = mapping.map(request, Comment.class);
         return mapping.map(commentService.create(userId, publicationId, comment), CommentResource.class);

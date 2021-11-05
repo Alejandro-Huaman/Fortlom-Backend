@@ -37,7 +37,7 @@ public class PublicationController {
         return mapper.toResource(publicationService.getById(publicationId));
     }
 
-    @PostMapping("/artist/{artistId}/publications")
+    @PostMapping("/artists/{artistId}/publications")
     public PublicationResource createPublication(@PathVariable Long artistId,@RequestBody CreatePublicationResource request) {
         Publication publication = mapping.map(request, Publication.class);
         return mapping.map(publicationService.create(artistId, publication), PublicationResource.class);
@@ -53,7 +53,7 @@ public class PublicationController {
         return publicationService.delete(publicationId);
     }
 
-    @GetMapping("/artist/{artistId}/publication")
+    @GetMapping("/artists/{artistId}/publications")
     public Page<PublicationResource> getAllPublicationByArtistId(@PathVariable Long artistId,Pageable pageable) {
         return mapper.modelListToPage(publicationService.getPublicationByArtistId(artistId), pageable);
     }

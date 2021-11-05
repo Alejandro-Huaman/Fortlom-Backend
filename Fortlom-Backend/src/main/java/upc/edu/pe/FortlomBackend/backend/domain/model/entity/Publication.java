@@ -52,6 +52,6 @@ public class Publication {
     private Artist artist;
 
     @OneToMany(targetEntity = Comment.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "commentid",referencedColumnName = "id")
+    @JoinColumn(name = "publicationid",referencedColumnName = "id")
     private List<Comment> comment;
 }
