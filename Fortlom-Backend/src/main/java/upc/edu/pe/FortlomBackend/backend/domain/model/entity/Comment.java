@@ -41,14 +41,14 @@ public class Comment {
 
     @NotNull
     @Column(unique = true)
-    private Date date;
+    @Size(max = 50)
+    private String date;
 
-
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "userid")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "publication_id", nullable = false)
+    @ManyToOne(targetEntity = Publication.class)
+    @JoinColumn(name = "publicationid")
     private Publication publication;
 }

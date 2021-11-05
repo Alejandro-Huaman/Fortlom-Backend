@@ -4,9 +4,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import upc.edu.pe.FortlomBackend.backend.domain.model.entity.Publication;
-import upc.edu.pe.FortlomBackend.backend.resource.CreatePublicationResource;
-import upc.edu.pe.FortlomBackend.backend.resource.UpdatePublicationResource;
-import upc.edu.pe.FortlomBackend.backend.resource.PublicationResource;
+import upc.edu.pe.FortlomBackend.backend.resource.Publication.CreatePublicationResource;
+import upc.edu.pe.FortlomBackend.backend.resource.Publication.PublicationResource;
+import upc.edu.pe.FortlomBackend.backend.resource.Publication.UpdatePublicationResource;
 import upc.edu.pe.FortlomBackend.shared.mapping.EnhancedModelMapper;
 
 import java.io.Serializable;
@@ -25,10 +25,12 @@ public class PublicationMapper implements  Serializable{
         return new PageImpl<>(mapper.mapList(modelList, PublicationResource.class), pageable, modelList.size());
     }
     public Publication toModel(CreatePublicationResource resource) {
+
         return mapper.map(resource, Publication.class);
     }
 
     public Publication toModel(UpdatePublicationResource resource) {
+
         return mapper.map(resource, Publication.class);
     }
 

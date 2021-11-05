@@ -1,19 +1,17 @@
-package upc.edu.pe.FortlomBackend.backend.resource.Artist;
+package upc.edu.pe.FortlomBackend.backend.resource.Comment;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
+import java.util.Date;
+
 @Setter
 @Getter
-public class UpdateArtstResource {
-    @NotNull
+public class UpdateCommentResource {
+
     private Long id;
     @NotNull
     private String CommentDescription;
     @NotNull
-    private Long PublicationID;
-    @NotNull
-    private Long UserID;
-    @NotNull
-    private Date date;
+    private String date;
 }

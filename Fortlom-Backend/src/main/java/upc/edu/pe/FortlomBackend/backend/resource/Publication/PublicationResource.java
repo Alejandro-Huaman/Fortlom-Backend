@@ -1,6 +1,7 @@
 package upc.edu.pe.FortlomBackend.backend.resource.Publication;
 import lombok.Getter;
 import lombok.Setter;
+import upc.edu.pe.FortlomBackend.backend.resource.Artist.ArtistResource;
 
 import java.util.Date;
 
@@ -12,7 +13,7 @@ public class PublicationResource {
     private String PublicationName;
     private String PublicationDescription;
     private Long likes;
-    private Date date;
-    private Long UserId;
+    private String date;
+    private ArtistResource artist;
 
 }

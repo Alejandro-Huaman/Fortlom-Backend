@@ -10,11 +10,9 @@ import java.util.Date;
 @Setter
 public class CreateCommentResource {
     @NotNull
+    @Size(max = 150)
     private String CommentDescription;
     @NotNull
-    private Long PublicationID;
-    @NotNull
-    private Long UserID;
-    @NotNull
-    private Date date;
+    @Size(max = 50)
+    private String date;
 }

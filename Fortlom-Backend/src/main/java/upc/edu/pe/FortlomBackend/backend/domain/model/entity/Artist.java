@@ -10,6 +10,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,5 +32,9 @@ public class Artist {
     @NotNull
     @Column()
     private Long followers;
+
+    @OneToMany(targetEntity = Publication.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "publicationid",referencedColumnName = "id")
+    private List<Publication> publications;
 
 }

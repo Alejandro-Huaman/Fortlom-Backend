@@ -22,10 +22,5 @@ public class UpdatePublicationResource {
 
     private Long likes;
 
-    private Date date;
-
-    @NotNull
-    @Size(max = 250)
-    private Long UserId;
-
+    private String date;
 }

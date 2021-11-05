@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import upc.edu.pe.FortlomBackend.backend.domain.model.entity.Publication;
+import upc.edu.pe.FortlomBackend.backend.domain.persistence.ArtistRepository;
 import upc.edu.pe.FortlomBackend.backend.domain.persistence.PublicationRepository;
 import upc.edu.pe.FortlomBackend.backend.domain.service.PublicationService;
 import upc.edu.pe.FortlomBackend.shared.exception.ResourceNotFoundException;
@@ -19,14 +20,17 @@ import java.util.Set;
 public class PublicationServiceImpl implements PublicationService {
 
     private static final String ENTITY = "Publication";
+    private static final String ENTITY2 = "Artist";
 
     private final PublicationRepository publicationRepository;
+    private final ArtistRepository artistRepository;
 
     private final Validator validator;
 
-    public PublicationServiceImpl(PublicationRepository PublicationRepository, Validator validator){
+    public PublicationServiceImpl(PublicationRepository PublicationRepository, ArtistRepository artistRepository, Validator validator){
 
-        this.PublicationRepository=PublicationRepository;
+        this.publicationRepository=PublicationRepository;
+        this.artistRepository = artistRepository;
         this.validator=validator;
     }
 
@@ -46,27 +50,36 @@ public class PublicationServiceImpl implements PublicationService {
     }
 
     @Override
-    public Publication create(Publication request) {
-        Set<ConstraintViolation<Publication>> violations = validator.validate(request);
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
-
-        return publicationRepository.save(request);
+    public Publication create(Long artistId, Publication request) {
+        return artistRepository.findById(artistId)
+                .map(artists -> {
+                    request.setArtist(artists);
+                    return publicationRepository.save(request);
+                })
+                .orElseThrow(() -> new ResourceNotFoundException(ENTITY2, artistId));
     }
 
     @Override
     public Publication update(Long publicationId, Publication request) {
-
         Set<ConstraintViolation<Publication>> violations = validator.validate(request);
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
 
-        return publicationRepository.findById(publicationId).map(publication ->
+        return publicationRepository.findById(publicationId).map(event ->
                 publicationRepository.save(
-                        //por implementar.
+                        event
+                                .withPublicationName(request.getPublicationName())
+                                .withPublicationDescription(request.getPublicationDescription())
+                                .withLikes(request.getLikes())
+                                .withDate(request.getDate())
                 )
 
-        ).orElseThrow(() -> new ResourceNotFoundException(ENTITY, artistId));
+        ).orElseThrow(() -> new ResourceNotFoundException(ENTITY, publicationId));
+    }
+
+    @Override
+    public List<Publication> getPublicationByArtistId(Long artistId) {
+        return publicationRepository.findByArtistId(artistId);
     }
 
     @Override

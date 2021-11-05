@@ -5,8 +5,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import upc.edu.pe.FortlomBackend.backend.domain.model.entity.Comment;
+import upc.edu.pe.FortlomBackend.backend.domain.model.entity.User;
 import upc.edu.pe.FortlomBackend.backend.domain.persistence.CommentRepository;
+import upc.edu.pe.FortlomBackend.backend.domain.persistence.PublicationRepository;
+import upc.edu.pe.FortlomBackend.backend.domain.persistence.UserRepository;
 import upc.edu.pe.FortlomBackend.backend.domain.service.CommentService;
+import upc.edu.pe.FortlomBackend.backend.resource.Comment.CommentResource;
+import upc.edu.pe.FortlomBackend.backend.resource.Comment.CreateCommentResource;
 import upc.edu.pe.FortlomBackend.shared.exception.ResourceNotFoundException;
 import upc.edu.pe.FortlomBackend.shared.exception.ResourceValidationException;
 
@@ -21,12 +26,16 @@ public class CommentServiceImpl implements CommentService {
     private static final String ENTITY = "Comment";
 
     private final CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final PublicationRepository publicationRepository;
 
     private final Validator validator;
 
-    public CommentServiceImpl(CommentRepository CommentRepository, Validator validator){
+    public CommentServiceImpl(CommentRepository CommentRepository, UserRepository userRepository, PublicationRepository publicationRepository, Validator validator){
 
-        this.CommentRepository=CommentRepository;
+        this.commentRepository=CommentRepository;
+        this.userRepository = userRepository;
+        this.publicationRepository = publicationRepository;
         this.validator=validator;
     }
 
@@ -46,27 +55,37 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment create(Comment request) {
-        Set<ConstraintViolation<Comment>> violations = validator.validate(request);
-        if (!violations.isEmpty())
-            throw new ResourceValidationException(ENTITY, violations);
-
-        return commentRepository.save(request);
+    public Comment create(Long userId, Long publicationId, Comment request) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User", userId));
+        return publicationRepository.findById(publicationId)
+                .map(publications -> {
+                    request.setPublication(publications);
+                    request.setUser(user);
+                    return commentRepository.save(request);
+                })
+                .orElseThrow(() -> new ResourceNotFoundException("Publication", publicationId));
     }
 
     @Override
     public Comment update(Long commentId, Comment request) {
-
-        Set<ConstraintViolation<Publication>> violations = validator.validate(request);
+        Set<ConstraintViolation<Comment>> violations = validator.validate(request);
         if (!violations.isEmpty())
             throw new ResourceValidationException(ENTITY, violations);
 
-        return publicationRepository.findById(commentId).map(comment ->
+        return commentRepository.findById(commentId).map(event ->
                 commentRepository.save(
-                        //por implementar.
+                        event
+                                .withCommentDescription(request.getCommentDescription())
+                                .withDate(request.getDate())
                 )
 
         ).orElseThrow(() -> new ResourceNotFoundException(ENTITY, commentId));
+    }
+
+    @Override
+    public List<Comment> getCommentByPublicationId(Long publicationId) {
+        return commentRepository.findByPublicationId(publicationId);
     }
 
     @Override

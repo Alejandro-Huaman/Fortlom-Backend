@@ -12,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -44,10 +45,13 @@ public class Publication {
 
     @NotNull
     @Column(unique = true)
-    private Date date;
+    private String date;
 
+    @ManyToOne(targetEntity = Artist.class)
+    @JoinColumn(name = "artistid")
+    private Artist artist;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @OneToMany(targetEntity = Comment.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "commentid",referencedColumnName = "id")
+    private List<Comment> comment;
 }
