@@ -35,4 +35,9 @@ public class MappingConfiguration {
     public CommentMapper commentMapper(){
         return new CommentMapper();
     }
+
+    @Bean
+    public EventMapper eventMapper(){
+        return new EventMapper();
+    }
 }

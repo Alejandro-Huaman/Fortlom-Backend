@@ -48,8 +48,7 @@ public class User  {
     @Column()
     private String Password;
 
-    @OneToMany
-    private List<Forum> forums;
+
 
     @OneToMany
     private List<Publication> publications;
@@ -57,4 +56,8 @@ public class User  {
     @OneToMany(targetEntity = Comment.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "userid",referencedColumnName = "id")
     private List<Comment> comment;
+
+    @OneToMany(targetEntity = Forum.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid",referencedColumnName = "id")
+    private List<Forum> forums;
 }
