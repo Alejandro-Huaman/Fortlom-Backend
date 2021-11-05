@@ -23,7 +23,7 @@ import java.util.List;
 public class Artist {
 
     @Id
-    private Long Id;
+    private Long id;
 
     @NotNull
     @Column()
