@@ -41,7 +41,7 @@ public class PublicationServiceImpl implements PublicationService {
 
     @Override
     public Publication getById(Long publicationId) {
-        return artistRepository.findById(publicationId)
+        return publicationRepository.findById(publicationId)
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, publicationId));
     }
 

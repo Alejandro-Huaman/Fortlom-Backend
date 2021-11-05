@@ -12,7 +12,7 @@ import upc.edu.pe.FortlomBackend.shared.mapping.EnhancedModelMapper;
 import java.io.Serializable;
 import java.util.List;
 
-public class UserMapper implements  Serializable{
+public class PublicationMapper implements  Serializable{
 
     @Autowired
     EnhancedModelMapper mapper;
