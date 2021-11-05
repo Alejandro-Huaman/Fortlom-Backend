@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
 public class Fanatic  {
 
     @Id
-    private Long Id;
+    private Long id;
     @NotNull
     @NotBlank
     @Size(max = 30)

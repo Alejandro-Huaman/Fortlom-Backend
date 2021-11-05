@@ -1,4 +1,6 @@
 package upc.edu.pe.FortlomBackend.backend.domain.model.entity;
+
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -10,7 +12,14 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
+
+/*
+"id": 1,
+"CommentDescription": "You really going to like it",
+"PublicationID": 1,
+"UserID": 1,
+"Date": "10/9/2020"
+*/
 
 @Getter
 @Setter
@@ -18,43 +27,28 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "User")
-public class User  {
+@Table(name = "Comment")
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
     @NotBlank
-    @Size(max = 30)
+    @Size(max = 150)
     @Column(unique = true)
-    private String Name;
+    private String CommentDescription;
 
     @NotNull
-    @NotBlank
-    @Size(max = 40)
     @Column(unique = true)
-    private String LastName;
-
-    @NotNull
-    @NotBlank
     @Size(max = 50)
-    @Column(unique = true)
-    private String Email;
+    private String date;
 
-    @NotNull
-    @NotBlank
-    @Size(max = 30)
-    @Column()
-    private String Password;
+    @ManyToOne(targetEntity = User.class)
+    @JoinColumn(name = "userid")
+    private User user;
 
-    @OneToMany
-    private List<Forum> forums;
-
-    @OneToMany
-    private List<Publication> publications;
-
-    @OneToMany(targetEntity = Comment.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "userid",referencedColumnName = "id")
-    private List<Comment> comment;
+    @ManyToOne(targetEntity = Publication.class)
+    @JoinColumn(name = "publicationid")
+    private Publication publication;
 }

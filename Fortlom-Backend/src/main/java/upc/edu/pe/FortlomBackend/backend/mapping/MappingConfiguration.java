@@ -26,5 +26,13 @@ public class MappingConfiguration {
         return new ArtistMapper();
     }
 
+    @Bean
+    public PublicationMapper publicationMapper(){
+        return new PublicationMapper();
+    }
 
+    @Bean
+    public CommentMapper commentMapper(){
+        return new CommentMapper();
+    }
 }
