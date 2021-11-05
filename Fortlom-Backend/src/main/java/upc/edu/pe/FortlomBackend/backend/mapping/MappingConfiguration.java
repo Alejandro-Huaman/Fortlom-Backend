@@ -40,4 +40,8 @@ public class MappingConfiguration {
     public EventMapper eventMapper(){
         return new EventMapper();
     }
+
+    @Bean
+    public ForumCommentMapper forumcommentMapper(){ return new ForumCommentMapper(); }
+
 }

@@ -60,4 +60,8 @@ public class User  {
     @OneToMany(targetEntity = Forum.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "userid",referencedColumnName = "id")
     private List<Forum> forums;
+
+    @OneToMany(targetEntity = ForumComment.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "userid",referencedColumnName = "id")
+    private List<ForumComment> forumComments;
 }
