@@ -48,7 +48,6 @@ public class User  {
     @Column()
     private String Password;
 
-
     @OneToMany
     private List<Forum> forums;
 
