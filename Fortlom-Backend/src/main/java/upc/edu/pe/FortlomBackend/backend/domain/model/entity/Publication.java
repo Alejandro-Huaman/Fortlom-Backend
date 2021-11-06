@@ -40,7 +40,7 @@ public class Publication {
     private String PublicationDescription;
 
     @NotNull
-    @Column(unique = true)
+    @Column()
     private Long likes;
 
     @NotNull

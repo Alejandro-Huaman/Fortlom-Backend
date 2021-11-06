@@ -1,6 +1,7 @@
 package upc.edu.pe.FortlomBackend.backend.mapping;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import upc.edu.pe.FortlomBackend.backend.resource.Report.ReportResource;
 
 
 @Configuration("FortlomMappingConfiguration")
@@ -43,5 +44,18 @@ public class MappingConfiguration {
 
     @Bean
     public ForumCommentMapper forumcommentMapper(){ return new ForumCommentMapper(); }
+
+    @Bean
+    public FollowMapper followMapper(){ return new FollowMapper(); }
+
+
+    @Bean
+    public RateMapper rateMapper(){ return new RateMapper(); }
+
+
+    @Bean
+    public ReportMapper reportMapper(){ return new ReportMapper(); }
+
+
 
 }
