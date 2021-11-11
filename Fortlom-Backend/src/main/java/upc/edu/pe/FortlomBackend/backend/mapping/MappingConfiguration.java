@@ -56,6 +56,9 @@ public class MappingConfiguration {
     @Bean
     public ReportMapper reportMapper(){ return new ReportMapper(); }
 
+    @Bean
+    public MultimediaMapper multimediaMapper(){ return new MultimediaMapper(); }
+
 
 
 }

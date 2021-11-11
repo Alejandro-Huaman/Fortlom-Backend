@@ -54,4 +54,8 @@ public class Publication {
     @OneToMany(targetEntity = Comment.class,cascade = CascadeType.ALL)
     @JoinColumn(name = "publicationid",referencedColumnName = "id")
     private List<Comment> comment;
+
+    @OneToMany(targetEntity = Multimedia.class,cascade = CascadeType.ALL)
+    @JoinColumn(name = "publicationid",referencedColumnName = "id")
+    private List<Multimedia> multimedia;
 }
