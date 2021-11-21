@@ -29,14 +29,14 @@ public class Publication {
     @NotNull
     @NotBlank
     @Size(max = 30)
-    @Column(unique = true)
+    @Column()
     private String PublicationName;
 
 
     @NotNull
     @NotBlank
     @Size(max = 100)
-    @Column(unique = true)
+    @Column()
     private String PublicationDescription;
 
     @NotNull
@@ -44,7 +44,6 @@ public class Publication {
     private Long likes;
 
     @NotNull
-    @Column(unique = true)
     private String date;
 
     @ManyToOne(targetEntity = Artist.class)
